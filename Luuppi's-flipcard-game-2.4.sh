@@ -2,7 +2,7 @@
 
 #This is a simple flip card game
 #By Luuppi
-#Can be referenced by LFG-2.4
+#Can be referenced by LFG-2.4.1
 #This is just a template
 #You can put your own questions and answers under there
 #(The lines 28-97)
@@ -212,7 +212,6 @@ case $input in
     sleep 1
     fi
     echo "Value set to" $max
-    sleep 1
     ;;
 
     q|x|quit|exit)
