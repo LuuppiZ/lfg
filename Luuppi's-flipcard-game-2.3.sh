@@ -2,12 +2,13 @@
 
 #This is a simple flip card game
 #By Luuppi
-#Can be referenced by LFG-2.2
+#Can be referenced by LFG-2.3
 #This is just a template
 #You can put your own questions and answers under there
-#(The lines 23-92)
+#(The lines 28-97)
 
 #input variable just in case
+#used in the settings menu
 input="none"
 
 #mode variable
@@ -18,6 +19,10 @@ mode="none"
 
 #set user's answer variable
 ans="null"
+
+#used for random mode
+#specifies the max numbered question allowed
+((max=30))
 
 #set question variables
 question1="foo1"
@@ -117,6 +122,9 @@ echo "Welcome to Luuppi's Flipcard Game!"
 echo
 echo "1 for normal"
 echo "2 for reverse"
+echo "3 for random"
+echo
+echo "s for settings"
 echo
 read -p "Input: " mode
 echo
@@ -129,9 +137,21 @@ case $mode in
     break
     ;;
 
-    2|r|reverse)
+    2|re|reverse)
     mode=reverse
     echo "Reverse mode selected"
+    break
+    ;;
+
+    3|r|ra|random)
+    mode=random
+    echo "Random mode selected"
+    break
+    ;;
+
+    s|settings)
+    mode=settings
+    echo "Going to settings..."
     break
     ;;
 
@@ -149,6 +169,46 @@ echo
 echo
 echo
 echo
+
+
+#Settings go here
+while [ $mode = "settings" ]
+do
+echo
+echo
+echo "Settings menu"
+echo
+echo "1 for inputting max random value"
+echo
+echo "q to return back to main menu"
+echo
+
+read -p "Input: " input
+
+case $input in
+
+    1|r|ra|random)
+    echo
+    read -p "Enter max random value: " max
+    echo
+    echo "Value set to" $max
+
+    ;;
+
+    q|x|quit|exit)
+    echo "Going back to main menu..."
+    break
+    ;;
+
+    *)
+    echo "Incorrect value, try again."
+    ;;
+
+esac
+
+done
+
+
 
 
 
@@ -1875,6 +1935,20 @@ done
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #reverse mode loop
 while [ $mode = "reverse" ]
 do
@@ -3592,6 +3666,1792 @@ fi
 
 
 done
+
+
+
+
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+#Definitely not ready yet...
+
+
+while [ $mode = "random" ]
+do
+
+
+#per question while loop
+while [ $q = 1 ]
+do
+
+echo 1. $question1
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer1)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer1
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 2 ]
+do
+
+echo 2. $question2
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer2)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer2
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 3 ]
+do
+
+echo 3. $question3
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer3)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer3
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 4 ]
+do
+
+echo 4. $question4
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer4)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer4
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 5 ]
+do
+
+echo 5. $question5
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer5)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer5
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 6 ]
+do
+
+echo 6. $question6
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer6)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer6
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 7 ]
+do
+
+echo 7. $question7
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer7)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer7
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 8 ]
+do
+
+echo 8. $question8
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer8)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer8
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 9 ]
+do
+
+echo 9. $question9
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer9)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer9
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 10 ]
+do
+
+echo 10. $question10
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer10)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer10
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 11 ]
+do
+
+echo 11. $question11
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer11)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer11
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 12 ]
+do
+
+echo 12. $question12
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer12)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer12
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 13 ]
+do
+
+echo 13. $question13
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer13)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer13
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 14 ]
+do
+
+echo 14. $question14
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer14)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer14
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 15 ]
+do
+
+echo 15. $question15
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer15)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer15
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 16 ]
+do
+
+echo 16. $question16
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer16)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer16
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 17 ]
+do
+
+echo 17. $question17
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer17)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer17
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 18 ]
+do
+
+echo 18. $question18
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer18)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer18
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 19 ]
+do
+
+echo 19. $question19
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer19)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer19
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 20 ]
+do
+
+echo 20. $question20
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer20)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer20
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 21 ]
+do
+
+echo 21. $question21
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer21)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer21
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 22 ]
+do
+
+echo 22. $question22
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer22)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer22
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 23 ]
+do
+
+echo 23. $question23
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer23)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer23
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 24 ]
+do
+
+echo 24. $question24
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer24)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer24
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 25 ]
+do
+
+echo 25. $question25
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer25)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer25
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 26 ]
+do
+
+echo 26. $question26
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer26)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer26
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 27 ]
+do
+
+echo 27. $question27
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer27)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer27
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 28 ]
+do
+
+echo 28. $question28
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer28)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer28
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 29 ]
+do
+
+echo 29. $question29
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer29)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer29
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#per question while loop
+while [ $q = 30 ]
+do
+
+echo 30. $question30
+echo
+read -p "Answer: " ans
+
+case $ans in
+
+    $answer30)
+    echo "correct"
+    echo
+    echo
+    echo
+    q=$((1 + $RANDOM % "$max"))
+    ;;
+
+    correct)
+    echo
+    echo
+    echo Correct answer is: $answer30
+    ;;
+
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30)
+    #set q to ans but keep q as increment
+    q=$(( ans ))
+    break
+    ;;
+
+    exit|quit|q|x)
+    #breaks out of the mode
+    echo
+    echo exiting...
+    echo
+    ans=exit
+    break
+    ;;
+
+    *)
+    echo
+    echo "Try again"
+    ;;
+esac
+
+echo
+echo
+echo
+
+done
+
+if [[ "$ans" = "exit" ]]; then
+    break
+fi
+#per question loop end
+
+
+#(( q=1 ))
+
+done
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
