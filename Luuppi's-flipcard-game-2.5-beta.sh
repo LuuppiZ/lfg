@@ -2,10 +2,20 @@
 
 #This is a simple flip card game
 #By Luuppi
-#Can be referenced by LFG-2.4.1
+#Can be referenced by "LFG-2.5-beta"
 #This is just a template
 #You can put your own questions and answers under there
-#(The lines 28-97)
+#(The lines around 50-250)
+
+#todo:
+#settings show current values
+#non repeating random
+#setting for removing numbers from questions
+#multiple answer mode
+    #use 4 other random answers from variables, randomize the order and give the options a number. Should follow the max variable.
+
+#done
+#be able to assign at least two answers
 
 #input variable just in case
 #used in the settings menu
@@ -25,76 +35,196 @@ ans="null"
 ((max=30))
 
 #set question variables
-question1="foo1"
-question2="foo2"
-question3="foo3"
-question4="foo4"
-question5="foo5"
-question6="foo6"
-question7="foo7"
-question8="foo8"
-question9="foo9"
-question10="foo10"
+question1=""
+    question1a=""
+    question1b=""
+question2=""
+    question2a=""
+    question2b=""
+question3=""
+    question3a=""
+    question3b=""
+question4=""
+    question4a=""
+    question4b=""
+question5=""
+    question5a=""
+    question5b=""
+question6=""
+    question6a=""
+    question6b=""
+question7=""
+    question7a=""
+    question7b=""
+question8=""
+    question8a=""
+    question8b=""
+question9=""
+    question9a=""
+    question9b=""
+question10=""
+    question10a=""
+    question10b=""
 
 #over 10 is usually not needed but is here for convenience
-question11="foo11"
-question12="foo12"
-question13="foo13"
-question14="foo14"
-question15="foo15"
-question16="foo16"
-question17="foo17"
-question18="foo18"
-question19="foo19"
-question20="foo20"
+question11=""
+    question11a=""
+    question11b=""
+question12=""
+    question12a=""
+    question12b=""
+question13=""
+    question13a=""
+    question13b=""
+question14=""
+    question14a=""
+    question14b=""
+question15=""
+    question15a=""
+    question15b=""
+question16=""
+    question16a=""
+    question16b=""
+question17=""
+    question17a=""
+    question17b=""
+question18=""
+    question18a=""
+    question18b=""
+question19=""
+    question19a=""
+    question19b=""
+question20=""
+    question20a=""
+    question20b=""
 
 #just in case
-question21="foo21"
-question22="foo22"
-question23="foo23"
-question24="foo24"
-question25="foo25"
-question26="foo26"
-question27="foo27"
-question28="foo28"
-question29="foo29"
-question30="foo30"
+question21=""
+    question21a=""
+    question21b=""
+question22=""
+    question22a=""
+    question22b=""
+question23=""
+    question23a=""
+    question23b=""
+question24=""
+    question24a=""
+    question24b=""
+question25=""
+    question25a=""
+    question25b=""
+question26=""
+    question26a=""
+    question26b=""
+question27=""
+    question27a=""
+    question27b=""
+question28=""
+    question28a=""
+    question28b=""
+question29=""
+    question29a=""
+    question29b=""
+question30=""
+    question30a=""
+    question30b=""
 
 
 #set answer variables
 
-answer1="foo1ans"
-answer2="foo2ans"
-answer3="foo3ans"
-answer4="foo4ans"
-answer5="foo5ans"
-answer6="foo6ans"
-answer7="foo7ans"
-answer8="foo8ans"
-answer9="foo9ans"
-answer10="foo10ans"
+answer1=""
+    answer1a=""
+    answer1b=""
+answer2=""
+    answer2a=""
+    answer2b=""
+answer3=""
+    answer3a=""
+    answer3b=""
+answer4=""
+    answer4a=""
+    answer4b=""
+answer5=""
+    answer5a=""
+    answer5b=""
+answer6=""
+    answer6a=""
+    answer6b=""
+answer7=""
+    answer7a=""
+    answer7b=""
+answer8=""
+    answer8a=""
+    answer8b=""
+answer9=""
+    answer9a=""
+    answer9b=""
+answer10=""
+    answer10a=""
+    answer10b=""
 
-answer11="foo11ans"
-answer12="foo12ans"
-answer13="foo13ans"
-answer14="foo14ans"
-answer15="foo15ans"
-answer16="foo16ans"
-answer17="foo17ans"
-answer18="foo18ans"
-answer19="foo19ans"
-answer20="foo20ans"
+answer11=""
+    answer11a=""
+    answer11b=""
+answer12=""
+    answer12a=""
+    answer12b=""
+answer13=""
+    answer13a=""
+    answer13b=""
+answer14=""
+    answer14a=""
+    answer14b=""
+answer15=""
+    answer15a=""
+    answer15b=""
+answer16=""
+    answer16a=""
+    answer16b=""
+answer17=""
+    answer17a=""
+    answer17b=""
+answer18=""
+    answer18a=""
+    answer18b=""
+answer19=""
+    answer19a=""
+    answer19b=""
+answer20=""
+    answer20a=""
+    answer20b=""
 
-answer21="foo21ans"
-answer22="foo22ans"
-answer23="foo23ans"
-answer24="foo24ans"
-answer25="foo25ans"
-answer26="foo26ans"
-answer27="foo27ans"
-answer28="foo28ans"
-answer29="foo29ans"
-answer30="foo30ans"
+answer21=""
+    answer21a=""
+    answer21b=""
+answer22=""
+    answer22a=""
+    answer22b=""
+answer23=""
+    answer23a=""
+    answer23b=""
+answer24=""
+    answer24a=""
+    answer24b=""
+answer25=""
+    answer25a=""
+    answer25b=""
+answer26=""
+    answer26a=""
+    answer26b=""
+answer27=""
+    answer27a=""
+    answer27b=""
+answer28=""
+    answer28a=""
+    answer28b=""
+answer29=""
+    answer29a=""
+    answer29b=""
+answer30=""
+    answer30a=""
+    answer30b=""
 
 
 
@@ -249,7 +379,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer1)
+    $answer1|$answer1a|$answer1b)
     echo "correct"
     echo
     echo
@@ -302,7 +432,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer2)
+    $answer2|$answer2a|$answer2b)
     echo "correct"
     echo
     echo
@@ -359,7 +489,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer3)
+    $answer3|$answer3a|$answer3b)
     echo "correct"
     echo
     echo
@@ -416,7 +546,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer4)
+    $answer4|$answer4a|$answer4b)
     echo "correct"
     echo
     echo
@@ -473,7 +603,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer5)
+    $answer5|$answer5a|$answer5b)
     echo "correct"
     echo
     echo
@@ -530,7 +660,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer6)
+    $answer6|$answer6a|$answer6b)
     echo "correct"
     echo
     echo
@@ -587,7 +717,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer7)
+    $answer7|$answer7a|$answer7b)
     echo "correct"
     echo
     echo
@@ -644,7 +774,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer8)
+    $answer8|$answer8a|$answer8b)
     echo "correct"
     echo
     echo
@@ -701,7 +831,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer9)
+    $answer9|$answer9a|$answer9b)
     echo "correct"
     echo
     echo
@@ -758,7 +888,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer10)
+    $answer10|$answer10a|$answer10b)
     echo "correct"
     echo
     echo
@@ -815,7 +945,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer11)
+    $answer11|$answer11a|$answer11b)
     echo "correct"
     echo
     echo
@@ -872,7 +1002,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer12)
+    $answer12|$answer12a|$answer12b)
     echo "correct"
     echo
     echo
@@ -929,7 +1059,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer13)
+    $answer13|$answer13a|$answer13b)
     echo "correct"
     echo
     echo
@@ -986,7 +1116,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer14)
+    $answer14|$answer14a|$answer14b)
     echo "correct"
     echo
     echo
@@ -1043,7 +1173,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer15)
+    $answer15|$answer15a|$answer15b)
     echo "correct"
     echo
     echo
@@ -1100,7 +1230,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer16)
+    $answer16|$answer16a|$answer16b)
     echo "correct"
     echo
     echo
@@ -1157,7 +1287,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer17)
+    $answer17|$answer17a|$answer17b)
     echo "correct"
     echo
     echo
@@ -1214,7 +1344,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer18)
+    $answer18|$answer18a|$answer18b)
     echo "correct"
     echo
     echo
@@ -1271,7 +1401,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer19)
+    $answer19|$answer19a|$answer19b)
     echo "correct"
     echo
     echo
@@ -1328,7 +1458,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer20)
+    $answer20|$answer20a|$answer20b)
     echo "correct"
     echo
     echo
@@ -1385,7 +1515,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer21)
+    $answer21|$answer21a|$answer21b)
     echo "correct"
     echo
     echo
@@ -1442,7 +1572,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer22)
+    $answer22|$answer22a|$answer22b)
     echo "correct"
     echo
     echo
@@ -1499,7 +1629,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer23)
+    $answer23|$answer23a|$answer23b)
     echo "correct"
     echo
     echo
@@ -1556,7 +1686,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer24)
+    $answer24|$answer24a|$answer24b)
     echo "correct"
     echo
     echo
@@ -1613,7 +1743,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer25)
+    $answer25|$answer25a|$answer25b)
     echo "correct"
     echo
     echo
@@ -1670,7 +1800,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer26)
+    $answer26|$answer26a|$answer26b)
     echo "correct"
     echo
     echo
@@ -1727,7 +1857,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer27)
+    $answer27|$answer27a|$answer27b)
     echo "correct"
     echo
     echo
@@ -1784,7 +1914,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer28)
+    $answer28|$answer28a|$answer28b)
     echo "correct"
     echo
     echo
@@ -1841,7 +1971,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer29)
+    $answer29|$answer29a|$answer29b)
     echo "correct"
     echo
     echo
@@ -1898,7 +2028,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer30)
+    $answer30|$answer30a|$answer30b)
     echo "correct"
     echo
     echo
@@ -2003,7 +2133,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question1)
+    $question1|$question1a|$question1b)
     echo "correct"
     echo
     echo
@@ -2060,7 +2190,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question2)
+    $question2|$question2a|$question2b)
     echo "correct"
     echo
     echo
@@ -2117,7 +2247,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question3)
+    $question3|$question3a|$question3b)
     echo "correct"
     echo
     echo
@@ -2174,7 +2304,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question4)
+    $question4|$question4a|$question4b)
     echo "correct"
     echo
     echo
@@ -2231,7 +2361,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question5)
+    $question5|$question5a|$question5b)
     echo "correct"
     echo
     echo
@@ -2288,7 +2418,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question6)
+    $question6|$question6a|$question6b)
     echo "correct"
     echo
     echo
@@ -2345,7 +2475,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question7)
+    $question7|$question7a|$question7b)
     echo "correct"
     echo
     echo
@@ -2402,7 +2532,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question8)
+    $question8|$question8a|$question8b)
     echo "correct"
     echo
     echo
@@ -2459,7 +2589,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question9)
+    $question9|$question9a|$question9b)
     echo "correct"
     echo
     echo
@@ -2516,7 +2646,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question10)
+    $question10|$question10a|$question10b)
     echo "correct"
     echo
     echo
@@ -2573,7 +2703,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question11)
+    $question11|$question11a|$question11b)
     echo "correct"
     echo
     echo
@@ -2630,7 +2760,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question12)
+    $question12|$question12a|$question12b)
     echo "correct"
     echo
     echo
@@ -2687,7 +2817,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question13)
+    $question13|$question13a|$question13b)
     echo "correct"
     echo
     echo
@@ -2744,7 +2874,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question14)
+    $question14|$question14a|$question14b)
     echo "correct"
     echo
     echo
@@ -2801,7 +2931,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question15)
+    $question15|$question15a|$question15b)
     echo "correct"
     echo
     echo
@@ -2858,7 +2988,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question16)
+    $question16|$question16a|$question16b)
     echo "correct"
     echo
     echo
@@ -2915,7 +3045,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question17)
+    $question17|$question17a|$question17b)
     echo "correct"
     echo
     echo
@@ -2972,7 +3102,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question18)
+    $question18|$question18a|$question18b)
     echo "correct"
     echo
     echo
@@ -3029,7 +3159,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question19)
+    $question19|$question19a|$question19b)
     echo "correct"
     echo
     echo
@@ -3086,7 +3216,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question20)
+    $question20|$question20a|$question20b)
     echo "correct"
     echo
     echo
@@ -3143,7 +3273,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question21)
+    $question21|$question21a|$question21b)
     echo "correct"
     echo
     echo
@@ -3200,7 +3330,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question22)
+    $question22|$question22a|$question22b)
     echo "correct"
     echo
     echo
@@ -3257,7 +3387,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question23)
+    $question23|$question23a|$question23b)
     echo "correct"
     echo
     echo
@@ -3314,7 +3444,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question24)
+    $question24|$question24a|$question24b)
     echo "correct"
     echo
     echo
@@ -3371,7 +3501,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question25)
+    $question25|$question25a|$question25b)
     echo "correct"
     echo
     echo
@@ -3428,7 +3558,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question26)
+    $question26|$question26a|$question26b)
     echo "correct"
     echo
     echo
@@ -3485,7 +3615,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question27)
+    $question27|$question27a|$question27b)
     echo "correct"
     echo
     echo
@@ -3542,7 +3672,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question28)
+    $question28|$question28a|$question28b)
     echo "correct"
     echo
     echo
@@ -3599,7 +3729,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question29)
+    $question29|$question29a|$question29b)
     echo "correct"
     echo
     echo
@@ -3656,7 +3786,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question30)
+    $question30|$question30a|$question30b)
     echo "correct"
     echo
     echo
@@ -3766,7 +3896,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer1)
+    $answer1|$answer1a|$answer1b)
     echo "correct"
     echo
     echo
@@ -3819,7 +3949,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer2)
+    $answer2|$answer2a|$answer2b)
     echo "correct"
     echo
     echo
@@ -3876,7 +4006,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer3)
+    $answer3|$answer3a|$answer3b)
     echo "correct"
     echo
     echo
@@ -3933,7 +4063,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer4)
+    $answer4|$answer4a|$answer4b)
     echo "correct"
     echo
     echo
@@ -3990,7 +4120,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer5)
+    $answer5|$answer5a|$answer5b)
     echo "correct"
     echo
     echo
@@ -4047,7 +4177,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer6)
+    $answer6|$answer6a|$answer6b)
     echo "correct"
     echo
     echo
@@ -4104,7 +4234,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer7)
+    $answer7|$answer7a|$answer7b)
     echo "correct"
     echo
     echo
@@ -4161,7 +4291,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer8)
+    $answer8|$answer8a|$answer8b)
     echo "correct"
     echo
     echo
@@ -4218,7 +4348,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer9)
+    $answer9|$answer9a|$answer9b)
     echo "correct"
     echo
     echo
@@ -4275,7 +4405,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer10)
+    $answer10|$answer10a|$answer10b)
     echo "correct"
     echo
     echo
@@ -4332,7 +4462,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer11)
+    $answer11|$answer11a|$answer11b)
     echo "correct"
     echo
     echo
@@ -4389,7 +4519,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer12)
+    $answer12|$answer12a|$answer12b)
     echo "correct"
     echo
     echo
@@ -4446,7 +4576,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer13)
+    $answer13|$answer13a|$answer13b)
     echo "correct"
     echo
     echo
@@ -4503,7 +4633,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer14)
+    $answer14|$answer14a|$answer14b)
     echo "correct"
     echo
     echo
@@ -4560,7 +4690,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer15)
+    $answer15|$answer15a|$answer15b)
     echo "correct"
     echo
     echo
@@ -4617,7 +4747,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer16)
+    $answer16|$answer16a|$answer16b)
     echo "correct"
     echo
     echo
@@ -4674,7 +4804,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer17)
+    $answer17|$answer17a|$answer17b)
     echo "correct"
     echo
     echo
@@ -4731,7 +4861,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer18)
+    $answer18|$answer18a|$answer18b)
     echo "correct"
     echo
     echo
@@ -4788,7 +4918,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer19)
+    $answer19|$answer19a|$answer19b)
     echo "correct"
     echo
     echo
@@ -4845,7 +4975,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer20)
+    $answer20|$answer20a|$answer20b)
     echo "correct"
     echo
     echo
@@ -4902,7 +5032,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer21)
+    $answer21|$answer21a|$answer21b)
     echo "correct"
     echo
     echo
@@ -4959,7 +5089,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer22)
+    $answer22|$answer22a|$answer22b)
     echo "correct"
     echo
     echo
@@ -5016,7 +5146,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer23)
+    $answer23|$answer23a|$answer23b)
     echo "correct"
     echo
     echo
@@ -5073,7 +5203,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer24)
+    $answer24|$answer24a|$answer24b)
     echo "correct"
     echo
     echo
@@ -5130,7 +5260,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer25)
+    $answer25|$answer25a|$answer25b)
     echo "correct"
     echo
     echo
@@ -5187,7 +5317,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer26)
+    $answer26|$answer26a|$answer26b)
     echo "correct"
     echo
     echo
@@ -5244,7 +5374,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer27)
+    $answer27|$answer27a|$answer27b)
     echo "correct"
     echo
     echo
@@ -5301,7 +5431,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer28)
+    $answer28|$answer28a|$answer28b)
     echo "correct"
     echo
     echo
@@ -5358,7 +5488,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer29)
+    $answer29|$answer29a|$answer29b)
     echo "correct"
     echo
     echo
@@ -5415,7 +5545,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $answer30)
+    $answer30|$answer30a|$answer30b)
     echo "correct"
     echo
     echo
@@ -5509,7 +5639,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question1)
+    $question1|$question1a|$question1b)
     echo "correct"
     echo
     echo
@@ -5566,7 +5696,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question2)
+    $question2|$question2a|$question2b)
     echo "correct"
     echo
     echo
@@ -5623,7 +5753,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question3)
+    $question3|$question3a|$question3b)
     echo "correct"
     echo
     echo
@@ -5680,7 +5810,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question4)
+    $question4|$question4a|$question4b)
     echo "correct"
     echo
     echo
@@ -5737,7 +5867,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question5)
+    $question5|$question5a|$question5b)
     echo "correct"
     echo
     echo
@@ -5794,7 +5924,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question6)
+    $question6|$question6a|$question6b)
     echo "correct"
     echo
     echo
@@ -5851,7 +5981,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question7)
+    $question7|$question7a|$question7b)
     echo "correct"
     echo
     echo
@@ -5908,7 +6038,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question8)
+    $question8|$question8a|$question8b)
     echo "correct"
     echo
     echo
@@ -5965,7 +6095,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question9)
+    $question9|$question9a|$question9b)
     echo "correct"
     echo
     echo
@@ -6022,7 +6152,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question10)
+    $question10|$question10a|$question10b)
     echo "correct"
     echo
     echo
@@ -6079,7 +6209,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question11)
+    $question11|$question11a|$question11b)
     echo "correct"
     echo
     echo
@@ -6136,7 +6266,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question12)
+    $question12|$question12a|$question12b)
     echo "correct"
     echo
     echo
@@ -6193,7 +6323,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question13)
+    $question13|$question13a|$question13b)
     echo "correct"
     echo
     echo
@@ -6250,7 +6380,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question14)
+    $question14|$question14a|$question14b)
     echo "correct"
     echo
     echo
@@ -6307,7 +6437,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question15)
+    $question15|$question15a|$question15b)
     echo "correct"
     echo
     echo
@@ -6364,7 +6494,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question16)
+    $question16|$question16a|$question16b)
     echo "correct"
     echo
     echo
@@ -6421,7 +6551,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question17)
+    $question17|$question17a|$question17b)
     echo "correct"
     echo
     echo
@@ -6478,7 +6608,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question18)
+    $question18|$question18a|$question18b)
     echo "correct"
     echo
     echo
@@ -6535,7 +6665,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question19)
+    $question19|$question19a|$question19b)
     echo "correct"
     echo
     echo
@@ -6592,7 +6722,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question20)
+    $question20|$question20a|$question20b)
     echo "correct"
     echo
     echo
@@ -6649,7 +6779,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question21)
+    $question21|$question21a|$question21b)
     echo "correct"
     echo
     echo
@@ -6706,7 +6836,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question22)
+    $question22|$question22a|$question22b)
     echo "correct"
     echo
     echo
@@ -6763,7 +6893,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question23)
+    $question23|$question23a|$question23b)
     echo "correct"
     echo
     echo
@@ -6820,7 +6950,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question24)
+    $question24|$question24a|$question24b)
     echo "correct"
     echo
     echo
@@ -6877,7 +7007,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question25)
+    $question25|$question25a|$question25b)
     echo "correct"
     echo
     echo
@@ -6934,7 +7064,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question26)
+    $question26|$question26a|$question26b)
     echo "correct"
     echo
     echo
@@ -6991,7 +7121,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question27)
+    $question27|$question27a|$question27b)
     echo "correct"
     echo
     echo
@@ -7048,7 +7178,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question28)
+    $question28|$question28a|$question28b)
     echo "correct"
     echo
     echo
@@ -7105,7 +7235,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question29)
+    $question29|$question29a|$question29b)
     echo "correct"
     echo
     echo
@@ -7162,7 +7292,7 @@ read -p "Answer: " ans
 
 case $ans in
 
-    $question30)
+    $question30|$question30a|$question30b)
     echo "correct"
     echo
     echo
