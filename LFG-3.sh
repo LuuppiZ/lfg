@@ -306,6 +306,7 @@ main_menu() {
   echo ""
   sleep_between
   echo "s for settings"
+  echo "q to quit"
   sleep_between
   echo ""
   sleep_between
@@ -332,6 +333,10 @@ main_menu() {
       clear
       main_menu # Returns to main_menu after settings are set
     ;;
+    q|quit)
+      echo "Exiting..."
+      exit 0
+    ;;
     *)
       clear
       echo "Incorrect input, try again."
@@ -346,8 +351,9 @@ case "$1" in
     legacy_variable_import_path=$2
   ;;
   -i)
-    variable_file="$2"
-    import_variables
+    for variable_file in "$2" "$3" "$4" "$5" "$6"; do
+      import_variables
+    done
   ;;
   *)
     variable_file=
