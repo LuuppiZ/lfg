@@ -8,8 +8,11 @@ read_ans="Answer: "
 read_mode="Mode: "
 max_question="20"
 min_question="1"
-variable_file="items.csv"
+variable_file="$(ls *.csv)"
 max_question_import=$(wc -l < "$variable_file") # Import limit for questions/answers, this sets it to unlimited
+if [[ -z $max_question_import ]]; then
+  max_question_import=1000
+fi
 legacy_variable_import_path=""
 
 
@@ -47,7 +50,7 @@ import_variables() {
   for ((i=1; i<=$max_question_import; i+=2))
   do
     question_current="question$question_number" # question_current=question1
-    question_current_inside=$(sed -n "$i"p $variable_file) # question_current_inside=question1,,
+    question_current_inside=$(sed -n "$i"p "$variable_file") # question_current_inside=question1,,
     declare "$question_current=$question_current_inside" # question1=question1,,
 
     # Check if the line is empty and break the loop if so
@@ -88,7 +91,7 @@ import_variables() {
   for ((i=2; i<=$max_question_import; i+=2))
   do
     answer_current="answer$answer_number" # answer_current=answer1
-    answer_current_inside=$(sed -n "$i"p $variable_file) # answer_current_inside=answer1,,
+    answer_current_inside=$(sed -n "$i"p "$variable_file") # answer_current_inside=answer1,,
     declare "$answer_current=$answer_current_inside" # answer1=answer1,,
 
     # Check if the line is empty and break the loop if so
@@ -338,11 +341,24 @@ main_menu() {
   
 }
 
-if [[ -z $1 ]]; then
-  import_variables
-  elif [[ $1 = "-legacy" ]]; then
+case "$1" in
+  -legacy)
     legacy_variable_import_path=$2
-fi
+  ;;
+  -i)
+    variable_file="$2"
+    import_variables
+  ;;
+  *)
+    variable_file=
+    variable_file_array=(*.csv)
+    for variable_file in "${variable_file_array[@]}"; do
+      import_variables
+      echo "proceeding to next..."
+    done
+  ;;
+esac
+
 clear
 main_menu # Mode is now set, proceeding to the wanted mode.
 clear
