@@ -333,7 +333,7 @@ case $input in
     read -p "Value: " max
     echo
 
-    if [[ $max > 30 ]]; then
+    if [[ $max -gt 30 ]]; then
     echo
     echo "Error, 30 is the max value"
     sleep 1
