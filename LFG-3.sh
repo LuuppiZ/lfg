@@ -346,9 +346,11 @@ main_menu() {
   case "$input" in
     1|normal)
       mode="normal"
+      question_number="1"
     ;;
     2|reverse) 
       mode="reverse"
+      question_number="1"
     ;;
     3|random)
       mode="random"
@@ -374,7 +376,7 @@ main_menu() {
       main_menu
     ;;
   esac
-  
+  clear
 }
 
 max_variable_in_csv() {
@@ -423,11 +425,8 @@ case "$1" in
   ;;
 esac
 
-
-
 clear
 main_menu # Mode is now set, proceeding to the wanted mode.
-clear
 # Game loop
 while true; do
 
