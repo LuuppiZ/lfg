@@ -8,11 +8,7 @@ read_ans="Answer: "
 read_mode="Mode: "
 max_question="20"
 min_question="1"
-variable_file="$(ls *.csv)"
-max_question_import=$(wc -l < "$variable_file") # Import limit for questions/answers, this sets it to unlimited
-if [[ -z $max_question_import ]]; then
-  max_question_import=1000
-fi
+variable_file="" #"$(ls *.csv)"
 legacy_variable_import_path=""
 
 
@@ -169,14 +165,17 @@ if [[ -z $input ]]; then
 else
   input=${input,,} # Sets everything to lowercase
   for i in {a..z}; do
-    temp="answer$question_number$i"
-    temp="${!temp}"
-    if [[ $temp = $input ]]; then
-      answer=$temp
+    temp="answer$question_number$i" # question14a
+    temp="${!temp}" # I
+    if [[ -z $temp ]]; then
+      break
+    fi
+    temp=${temp,,} # i
+    if [[ $temp = $input ]]; then # if i is i
+      input=$answer # input=I
       break 
     fi
   done
-  answer=${answer,,}  
 
   case "$input" in
     $answer) 
@@ -346,15 +345,26 @@ main_menu() {
   
 }
 
+max_variable_in_csv() {
+  max_question_import=$(wc -l < "$variable_file") # Import limit for questions/answers, this sets it to unlimited
+  if [[ -z $max_question_import ]]; then
+    max_question_import=1000
+  fi
+}
+
 case "$1" in
   -h|-help)
-    echo "-legacy [your path]        Use legacy import method. (Aka. load variables from bash file)"
-    echo "-i [your variable file]    Import .csv files (Supports up to 5, just put them after each other)"
-    echo "-h & -help                 Prints this help command"
-    echo "ward                       Custom variable import path"
+    echo "    -legacy [your path]        Use legacy import method. (Aka. "
+    echo "                               load variables from bash file)"
+    echo "    -i [your variable file]    Import .csv files (Supports up to "
+    echo "                               5, just put them after each other)"
+    echo "    -h & -help                 Prints this help command"
+    echo "    ward                       Custom variable import path"
+    exit 0
   ;;
   ward)
     variable_file="/home/luuppi/Documents/coding/practice games/jp/new/items.csv"
+    max_variable_in_csv
     import_variables
   ;;
   -legacy)
@@ -365,6 +375,7 @@ case "$1" in
       if [[ -z $variable_file ]]; then
         break
       fi
+      max_variable_in_csv
       import_variables
     done
   ;;
@@ -373,11 +384,14 @@ case "$1" in
     variable_file_array=(*.csv)
     for variable_file in "${variable_file_array[@]}"; do
       echo "Importing variables from $variable_file"
+      max_variable_in_csv
       import_variables
       echo "proceeding to next..."
     done
   ;;
 esac
+
+
 
 clear
 main_menu # Mode is now set, proceeding to the wanted mode.
