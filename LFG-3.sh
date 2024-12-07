@@ -194,6 +194,7 @@ else
       echo "The correct answer is $answer"
     ;;
     q)
+      clear
       main_menu
     ;;
     *)clear
