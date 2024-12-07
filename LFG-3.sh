@@ -9,12 +9,6 @@ read_mode="Mode: "
 max_question="20"
 min_question="1"
 variable_file="" #"$(ls *.csv)"
-legacy_variable_import_path=""
-
-
-# Legacy feature, not supported. Use custom version 2 of the program
-# Import question variables
-#. /question/variable/path/here
 
 # Dynamic variables
 question_number="1"
@@ -390,10 +384,14 @@ case "$1" in
   -h|-help)
     echo "    -legacy [your path]        Use legacy import method. (Aka. "
     echo "                               load variables from bash file)"
+    echo "                               Supports up to 5 files."
+    echo "                               Note that this isn't exactly the as"
+    echo "                               before. a is the fist variable so"
+    echo "                               instead of question1 use question1a"
     echo "    -i [your variable file]    Import .csv files (Supports up to "
     echo "                               5, just put them after each other)"
     echo "    -h & -help                 Prints this help command"
-    echo "    ward                       Custom variable import path"
+    echo "    ward                       Custom hard-coded import path"
     exit 0
   ;;
   ward)
@@ -402,7 +400,9 @@ case "$1" in
     import_variables
   ;;
   -legacy)
-    legacy_variable_import_path=$2
+    for i in "$2" "$3" "$4" "$5" "$6"; do
+      . "$i"
+    done
   ;;
   -i)
     for variable_file in "$2" "$3" "$4" "$5" "$6"; do
