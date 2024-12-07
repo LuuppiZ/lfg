@@ -18,6 +18,7 @@ legacy_variable_import_path=""
 
 # Dynamic variables
 question_number="1"
+question_number_echo_enabled="1" # set to 1 to enable (can be set in settings)
 question_number_echo="" # This is the same as question_number but can can be disabled if not wanted that it shows. Default is off. 
 #It might be a good idea to throw this to somewhere where it resets every question, not sure though.
 mode="random"
@@ -150,6 +151,10 @@ seek_function() {
 # Question loop
 question_loop() {
   
+  if [[ $question_number_echo_enabled = 1 ]]; then
+    question_number_echo="$question_number."
+  fi 
+
   temp="question"$question_number"a" # temp=question1
   question="${!temp}"
 
@@ -200,6 +205,10 @@ fi
 
 question_loop_reverse() {
   
+  if [[ $question_number_echo_enabled = 1 ]]; then
+    question_number_echo="$question_number."
+  fi 
+
   temp="answer"$question_number"a" # temp=answer1
   question="${!temp}"
 
@@ -215,14 +224,18 @@ if [[ -z $input ]]; then
 else
   input=${input,,} # Sets everything to lowercase
   for i in {a..z}; do
-    temp="question$question_number$i"
-    temp="${!temp}"
-    if [[ $temp = $input ]]; then
-      answer=$temp
+    temp="question$question_number$i" # question14a
+    temp="${!temp}" # I
+    if [[ -z $temp ]]; then
+      break
+    fi
+    temp=${temp,,} # i
+    if [[ $temp = $input ]]; then # if i is i
+      input=$question # input=I
       break 
     fi
   done
-  answer=${answer,,}  
+ 
 
   case "$input" in
     $answer) 
@@ -262,6 +275,9 @@ while true; do
   echo "2 for max_question"
   echo "Current: $max_question"
   echo ""
+  echo "3 for question_number_echo"
+  echo "Current: $question_number_echo_enabled"
+  echo ""
   echo "q to go back to main menu"
   echo ""
   read -p "Option: " -r input
@@ -275,6 +291,21 @@ while true; do
       read -p "New max_question value: " -r max_question
       echo "max_question set to \"$max_question\""
       sleep 1
+    ;;
+    3)
+      echo "0 to disable, 1 to enable"
+      read -p "Value: " -r question_number_echo_enabled
+      echo "question_number_echo_enabled set to \"$question_number_echo_enabled\""
+      case "$question_number_echo_enabled" in
+        1|0)
+          echo "Value is ok"
+        ;;
+        *)
+          echo "Invalid value, setting to off..."
+          question_number_echo_enabled=0
+        ;;
+      esac
+      sleep 3
     ;;
     q)
       clear
