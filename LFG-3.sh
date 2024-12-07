@@ -347,11 +347,24 @@ main_menu() {
 }
 
 case "$1" in
+  -h|-help)
+    echo "-legacy [your path]        Use legacy import method. (Aka. load variables from bash file)"
+    echo "-i [your variable file]    Import .csv files (Supports up to 5, just put them after each other)"
+    echo "-h & -help                 Prints this help command"
+    echo "ward                       Custom variable import path"
+  ;;
+  ward)
+    variable_file="/home/luuppi/Documents/coding/practice games/jp/new/items.csv"
+    import_variables
+  ;;
   -legacy)
     legacy_variable_import_path=$2
   ;;
   -i)
     for variable_file in "$2" "$3" "$4" "$5" "$6"; do
+      if [[ -z $variable_file ]]; then
+        break
+      fi
       import_variables
     done
   ;;
@@ -359,6 +372,7 @@ case "$1" in
     variable_file=
     variable_file_array=(*.csv)
     for variable_file in "${variable_file_array[@]}"; do
+      echo "Importing variables from $variable_file"
       import_variables
       echo "proceeding to next..."
     done
