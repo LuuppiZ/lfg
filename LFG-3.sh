@@ -281,24 +281,24 @@ while true; do
       temp=$min_question
       read -p "New min_question value: " -r min_question
       echo "min_question set to \"$min_question\""
-      if [[ $min_question -gt $max_question ]]; then
-        echo "Error, can't set thee value higher than maximum."
-        echo "Reverting..."
-        min_question=$temp
-        sleep 2
-      fi
+      #if [[ $min_question -gt $max_question ]]; then
+      #  echo "Error, can't set thee value higher than maximum."
+      #  echo "Reverting..."
+      #  min_question=$temp
+      #  sleep 2
+      #fi
       sleep 1
     ;;
     2)
       temp=$max_question
       read -p "New max_question value: " -r max_question
       echo "max_question set to \"$max_question\""
-      if [[ $max_question -lt $min_question ]]; then
-        echo "Error, can't set the value lower than minimum."
-        echo "Reverting..."
-        max_question=$temp
-        sleep 2
-      fi
+      #if [[ $max_question -lt $min_question ]]; then
+      #  echo "Error, can't set the value lower than minimum."
+      #  echo "Reverting..."
+      #  max_question=$temp
+      #  sleep 2
+      #fi
       sleep 1
     ;;
     3)
