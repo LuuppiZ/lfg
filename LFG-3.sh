@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Todo
+# multiple choice mode
+
 # Long awaited version 3 that is not 7 000 rows Long
 # By Luuppi
 
@@ -145,8 +148,8 @@ seek_function() {
 # Question loop
 question_loop() {
   
-  if [[ $question_number_echo_enabled = 1 ]]; then
-    question_number_echo="$question_number."
+  if [[ "$question_number_echo_enabled" -eq 1 ]]; then
+    question_number_echo="${question_number}."
   fi 
 
   temp="question"$question_number"a" # temp=question1
@@ -200,8 +203,8 @@ fi
 
 question_loop_reverse() {
   
-  if [[ $question_number_echo_enabled = 1 ]]; then
-    question_number_echo="$question_number."
+  if [[ "$question_number_echo_enabled" -eq 1 ]]; then
+    question_number_echo="${question_number}."
   fi 
 
   temp="answer"$question_number"a" # temp=answer1
@@ -308,10 +311,14 @@ while true; do
       case "$question_number_echo_enabled" in
         1|0)
           echo "Value is ok"
+          if [[ $question_number_echo_enabled -eq 0 ]]; then
+            question_number_echo=""
+          fi
         ;;
         *)
           echo "Invalid value, setting to off..."
-          question_number_echo_enabled=0
+          question_number_echo_enabled="0"
+          question_number_echo=""
         ;;
       esac
       sleep 3
@@ -320,7 +327,9 @@ while true; do
       clear
       break 
     ;;
-    *) echo default
+    *)
+      echo "Invalid option"
+      sleep 3
     ;;
   esac
   clear
