@@ -311,9 +311,7 @@ while true; do
       case "$question_number_echo_enabled" in
         1|0)
           echo "Value is ok"
-          if [[ $question_number_echo_enabled -eq 0 ]]; then
-            question_number_echo=""
-          fi
+          question_number_echo=""
         ;;
         *)
           echo "Invalid value, setting to off..."
