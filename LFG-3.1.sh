@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Todo
-# multiple choice mode (This is in 3.1)
+# Issue with multiple choice, there might not be the correct option
 
 # Long awaited version 3 that is not 7 000 rows Long
 # By Luuppi
@@ -20,6 +19,8 @@ question_number_echo_enabled="1" # set to 1 to enable (can be set in settings)
 question_number_echo="" # This is the same as question_number but can can be disabled if not wanted that it shows. Default is off. 
 #It might be a good idea to throw this to somewhere where it resets every question, not sure though.
 mode="random"
+max_options=5 # can be customized in settings menu
+current_option_number=0
 
 # Parse commas from questions
 question_comma_parser() {
@@ -131,13 +132,15 @@ import_variables() {
 next_question() {
 
   case "$mode" in
-    normal|reverse)
+    normal|reverse|multiple_choice)
       ((question_number += 1))
     ;;
-    random|random_reverse)
+    random|random_reverse|random_multiple_choice)
       question_number=$(shuf -i $min_question-$max_question -n 1)
     ;;
     *)
+      echo "error, incorrect mode"
+      sleep 10
     ;;
   esac
   
@@ -261,6 +264,106 @@ else
 fi
 }
 
+multiple_choice_loop() {
+
+  if [[ "$question_number_echo_enabled" -eq 1 ]]; then
+    question_number_echo="${question_number}."
+  fi
+
+answer="answer"$question_number"a" # answer1a
+
+# Manually include the answer for the current question
+selected_answers=("answer${question_number}a")
+
+# Generate unique random numbers excluding the current question number
+random_numbers=($(shuf -i 1-$max_question_to_take_options_from -n $max_options | grep -v "^$question_number$"))
+
+if [ ${#random_numbers[@]} -gt $(($max_options - 1)) ]; then
+    # Remove the last element
+    random_numbers=("${random_numbers[@]:0:$((${#random_numbers[@]} - 1))}")
+fi
+
+# Add the random answers to the selected_answers array
+for num in "${random_numbers[@]}"; do
+  selected_answers+=("answer${num}a")
+done
+
+# Shuffle the selected answers so that answer${question_number}a isn't always first
+shuffled_answers=($(shuf -e "${selected_answers[@]}"))
+
+    while true; do  
+
+current_option_number=0
+temp="question"$question_number"a" # temp=question1a
+question="${!temp}" # question=How hot is the pizza?
+echo "$question_number_echo $question" # 1. How hot is the pizza?
+echo ""
+
+for letter in {a..z}; do
+  if [[ $current_option_number -eq $max_options ]]; then
+    break
+  fi
+  current_option_insides=${shuffled_answers[$current_option_number]} # current_option_insides=answer[random number]a
+  echo "$letter. ${!current_option_insides}" # a. 30 degrees
+
+  if [[ $current_option_insides = $answer ]]; then
+    saved_answer=$letter
+  fi
+  ((current_option_number += 1))
+done
+echo ""
+read -p "$read_ans" -r input # can be either a letter or the insides
+input=${input,,} # c
+
+if [[ -z $input ]]; then
+  clear
+  echo "Wrong, try again"
+elif [[ "$input" =~ ^[a-z]$ ]]; then
+  if [[ $input = $saved_answer ]]; then
+    input=$answer
+  fi
+else
+  input=${input,,} # Sets everything to lowercase
+  for i in {a..z}; do
+    temp="answer$question_number$i" # question14a
+    temp="${!temp}" # I
+    if [[ -z $temp ]]; then
+      break
+    fi
+    temp=${temp,,} # i
+    if [[ $temp = $input ]]; then # if i is i
+      input=$answer # input=I
+      break 
+    fi
+  done
+fi
+  case "$input" in
+    $answer) 
+      echo "Correct"
+      echo ""
+      next_question
+      break 
+    ;;
+    seek*) seek_function
+      break
+    ;;
+    correct)
+      clear
+      echo "The correct answer is $answer"
+    ;;
+    quit)
+      clear
+      main_menu
+    ;;
+    *)
+      clear
+      echo "Wrong, try again"
+    ;;
+  esac
+done
+}
+
+
 
 sleep_between() {
   sleep .05
@@ -279,6 +382,9 @@ while true; do
   echo ""
   echo "3 for question_number_echo"
   echo "Current: $question_number_echo_enabled"
+  echo ""
+  echo "4 for max_options (for multiple choice)"
+  echo "Current: $max_options"
   echo ""
   echo "q to go back to main menu"
   echo ""
@@ -325,6 +431,20 @@ while true; do
       esac
       sleep 3
     ;;
+    4)
+      temp=$max_options
+      echo "Please put this value at something between 2 to 26 and less than the max amount of questions you have."
+      read -p "New max_options value: " -r max_options
+      if [[ $max_options -lt 2 ]]; then
+        echo "Incorrect value, reverting..."
+        max_options=$temp
+      elif [[ $max_options -gt 26 ]]; then
+        echo "Incorrect value, reverting..."
+        max_options=$temp
+      fi
+      echo "max_options set to \"$max_options\""
+      sleep 1
+    ;;
     q)
       clear
       break 
@@ -341,7 +461,7 @@ done
 
 # Main menu
 main_menu() {
-  echo "Welcome to the LFG 3.0!"
+  echo "Welcome to the LFG 3.1!"
   sleep 1
   echo ""
   sleep_between
@@ -352,6 +472,10 @@ main_menu() {
   echo "3 for random mode"
   sleep_between
   echo "4 for random reverse mode"
+  sleep_between
+  echo "5 for multiple choice mode"
+  sleep_between
+  echo "6 for random multiple choice mode"
   sleep_between
   echo ""
   sleep_between
@@ -377,6 +501,14 @@ main_menu() {
     ;;
     4|"random reverse")
       mode="random_reverse"
+      question_number=$(shuf -i $min_question-$max_question -n 1)
+    ;;
+    5|"multiple choice")
+      mode="multiple_choice"
+      question_number="1"
+    ;;
+    6|"random multiple choice")
+      mode="random_multiple_choice"
       question_number=$(shuf -i $min_question-$max_question -n 1)
     ;;
     s|settings)
@@ -461,6 +593,9 @@ while true; do
     ;;
     reverse|random_reverse)
       question_loop_reverse
+    ;;
+    multiple_choice|random_multiple_choice)
+      multiple_choice_loop
     ;;
   esac
 
