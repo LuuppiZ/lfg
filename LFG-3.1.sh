@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# Issue with multiple choice, there might not be the correct option
+# Gamemode: Survive!
+# In this if you fail n times you lose.
+# In relax difficulty it's 10 times
+# In easy difficulty it's 5 times
+# In hard difficulty it's 3 times
+# In insane difficulty it's 1 time
 
 # Long awaited version 3 that is not 7 000 rows Long
 # By Luuppi
@@ -8,10 +13,13 @@
 # Static variables
 read_ans="Answer: "
 read_mode="Mode: "
-max_question="20"
+max_question="Default is set during import_variables"
 min_question="1"
 variable_file="" #"$(ls *.csv)"
 max_question_to_take_options_from="this is set at import_variables"
+savefile_location="/home/luuppi/Documents/coding/github/lfg/data" # This could maybe be changed with zenity but I'm not sure how to save this for next time.
+# Maybe tamper the script?
+empty_echo="Please type something..."
 
 # Dynamic variables
 question_number="1"
@@ -21,6 +29,69 @@ question_number_echo="" # This is the same as question_number but can can be dis
 mode="random"
 max_options=5 # can be customized in settings menu
 current_option_number=0
+max_streak_all_time=0 # It's time to have a save file.
+current_streak=0
+
+now_playing() {
+  echo "Now playing: $mode"
+}
+
+save_all_time_streak() {
+  if [[ $1 -gt $max_streak_all_time ]]; then
+    max_streak_all_time=$1
+    sed -i "s/max_streak_all_time=.*/max_streak_all_time=$1/g" $savefile_location
+  fi
+}
+
+streak_add() {
+  ((current_streak += 1))
+  save_all_time_streak $current_streak
+}
+streak_break() {
+  current_streak=0
+}
+
+streak_show() {
+  echo "Current streak: $current_streak      All time best streak: $max_streak_all_time"
+}
+
+answer_check() {
+    case "$input" in
+    $answer) clear
+      echo "Correct"
+      streak_add
+      next_question
+    ;;
+    seek*) clear
+      seek_function
+    ;;
+    correct|c)
+      streak_break
+      clear
+      correct_answer
+    ;;
+    q|quit)
+      streak_break
+      clear
+      main_menu
+    ;;
+    *)clear
+      streak_break
+      echo "Wrong, try again"
+    ;;
+  esac
+}
+
+correct_answer() {
+  case "$mode" in
+    multiple_choice|random_multiple_choice)
+    echo "The correct answer is ${!answer}"
+    ;;
+    *)
+      echo "The correct answer is $answer"
+    ;;
+  esac
+}
 
 # Parse commas from questions
 question_comma_parser() {
@@ -125,6 +196,8 @@ import_variables() {
 
   max_question_to_take_options_from=$question_number
   ((max_question_to_take_options_from -= 1))
+  max_question=$question_number
+  ((max_question -= 1))
   question_number=1
   answer_number=1
 }
@@ -170,7 +243,7 @@ question_loop() {
 
 if [[ -z $input ]]; then
   clear
-  echo "Wrong, try again"
+  echo "$empty_echo"
 else
   input=${input,,} # Sets everything to lowercase
   for i in {a..z}; do
@@ -185,26 +258,9 @@ else
       break 
     fi
   done
+  
+  answer_check
 
-  case "$input" in
-    $answer) 
-      echo "Correct"
-      next_question
-    ;;
-    seek*) seek_function
-    ;;
-    correct|c)
-      clear
-      echo "The correct answer is $answer"
-    ;;
-    q)
-      clear
-      main_menu
-    ;;
-    *)clear
-      echo "Wrong, try again"
-    ;;
-  esac
 fi
 }
 
@@ -225,7 +281,7 @@ question_loop_reverse() {
 
 if [[ -z $input ]]; then
   clear
-  echo "Wrong, try again"
+  echo "$empty_echo"
 else
   input=${input,,} # Sets everything to lowercase
   for i in {a..z}; do
@@ -240,27 +296,9 @@ else
       break 
     fi
   done
- 
 
-  case "$input" in
-    $answer) 
-      echo "Correct"
-      next_question
-    ;;
-    seek*) seek_function
-    ;;
-    correct|c)
-      clear
-      echo "The correct answer is $answer"
-    ;;
-    q)
-      clear
-      main_menu
-    ;;
-    *)clear
-      echo "Wrong, try again"
-    ;;
-  esac
+  answer_check
+
 fi
 }
 
@@ -317,7 +355,7 @@ input=${input,,} # c
 
 if [[ -z $input ]]; then
   clear
-  echo "Wrong, try again"
+  echo "$empty_echo"
 elif [[ "$input" =~ ^[a-z]$ ]]; then
   if [[ $input = $saved_answer ]]; then
     input=$answer
@@ -337,29 +375,8 @@ else
     fi
   done
 fi
-  case "$input" in
-    $answer) 
-      echo "Correct"
-      echo ""
-      next_question
-      break 
-    ;;
-    seek*) seek_function
-      break
-    ;;
-    correct)
-      clear
-      echo "The correct answer is $answer"
-    ;;
-    quit)
-      clear
-      main_menu
-    ;;
-    *)
-      clear
-      echo "Wrong, try again"
-    ;;
-  esac
+  answer_check
+  break
 done
 }
 
@@ -386,9 +403,12 @@ while true; do
   echo "4 for max_options (for multiple choice)"
   echo "Current: $max_options"
   echo ""
+  echo "\"reset streak\" for reseting all time streak"
+  echo ""
   echo "q to go back to main menu"
   echo ""
   read -p "Option: " -r input
+  input=${input,,}
   case "$input" in
     1)
       temp=$min_question
@@ -445,6 +465,38 @@ while true; do
       echo "max_options set to \"$max_options\""
       sleep 1
     ;;
+    "reset streak")
+      echo "Are you sure you want to reset your all time streak of $save_all_time_streak?"
+      read -p "[yes/no]: " -r input
+      input=${input,,}
+      case "$input" in
+        yes)
+          echo "Resetting in"
+          echo "5"
+          sleep 1
+          echo "4"
+          sleep 1
+          echo "3"
+          sleep 1
+          echo "2"
+          sleep 1
+          echo "1"
+          sleep 1
+          echo "All time streak reseted."
+          max_streak_all_time=0
+          sed -i "s/max_streak_all_time=.*/max_streak_all_time=0/g" $savefile_location
+          sleep 5
+        ;;
+        no)
+          echo "Reverting, nothing changed."
+          sleep 3
+        ;;
+        *)
+          echo "Invalid input, nothing changed."
+          sleep 5
+        ;;
+      esac 
+    ;;
     q)
       clear
       break 
@@ -456,12 +508,16 @@ while true; do
   esac
   clear
 done
+}
 
+reset_question_numbers() {
+  question_number="1"
+  question_number_echo="1"
 }
 
 # Main menu
 main_menu() {
-  echo "Welcome to the LFG 3.1!"
+  echo "Welcome to the Luuppi's Flip Card Game LFG-3.1!"
   sleep 1
   echo ""
   sleep_between
@@ -489,27 +545,33 @@ main_menu() {
   case "$input" in
     1|normal)
       mode="normal"
-      question_number="1"
+      reset_question_numbers
+      now_playing
     ;;
     2|reverse) 
       mode="reverse"
-      question_number="1"
+      reset_question_numbers
+      now_playing
     ;;
     3|random)
       mode="random"
       question_number=$(shuf -i $min_question-$max_question -n 1)
+      now_playing
     ;;
     4|"random reverse")
       mode="random_reverse"
       question_number=$(shuf -i $min_question-$max_question -n 1)
+      now_playing
     ;;
     5|"multiple choice")
       mode="multiple_choice"
-      question_number="1"
+      reset_question_numbers
+      now_playing
     ;;
     6|"random multiple choice")
       mode="random_multiple_choice"
       question_number=$(shuf -i $min_question-$max_question -n 1)
+      now_playing
     ;;
     s|settings)
       clear
@@ -582,8 +644,13 @@ case "$1" in
   ;;
 esac
 
+max_streak_all_time=$(cat $savefile_location | grep "max_streak_all_time=" | sed "s/max_streak_all_time=//g")
+echo "max_streak_all_time: $max_streak_all_time"
+
 clear
 main_menu # Mode is now set, proceeding to the wanted mode.
+now_playing
+streak_show
 # Game loop
 while true; do
 
@@ -598,6 +665,8 @@ while true; do
       multiple_choice_loop
     ;;
   esac
+
+  streak_show
 
 done
 
