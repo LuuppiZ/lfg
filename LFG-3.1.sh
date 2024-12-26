@@ -71,7 +71,7 @@ answer_check() {
       correct_answer
     ;;
     q|quit)
-      streak_break
+      #streak_break
       clear
       main_menu
     ;;
@@ -404,6 +404,7 @@ while true; do
   echo "Current: $max_options"
   echo ""
   echo "\"reset streak\" for reseting all time streak"
+  echo "Current max streak: $max_streak_all_time"
   echo ""
   echo "q to go back to main menu"
   echo ""
