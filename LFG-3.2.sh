@@ -1,5 +1,17 @@
 #!/bin/bash
+# Change the path to your liking (Please use the same format: no slash at the end although it's a folder)
+savefile_location="/home/$USER/.cache/luuppiflipcard"
 
+# This could maybe be changed with zenity but I'm not sure how to save this for next time.
+# Maybe tamper the script? (This feature is experemental and will always be in version 3)
+
+# Making sure that file exists
+if [[ -s "$savefile_location/data" ]]; then
+  echo "Datafile exists!"
+else
+  mkdir -p $savefile_location
+  echo "max_streak_all_time=0" > $savefile_location/data
+fi
 # Gamemode: Survive!
 # In this if you fail n times you lose.
 # In relax difficulty it's 10 times
@@ -17,8 +29,6 @@ max_question="Default is set during import_variables"
 min_question="1"
 variable_file="" #"$(ls *.csv)"
 max_question_to_take_options_from="this is set at import_variables"
-savefile_location="/home/luuppi/Documents/coding/github/lfg/data" # This could maybe be changed with zenity but I'm not sure how to save this for next time.
-# Maybe tamper the script?
 empty_echo="Please type something..."
 game_version="LFG-3.2"
 
