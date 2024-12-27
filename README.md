@@ -2,6 +2,20 @@
 Simple little flip card game template written in bash.
 I was inspired to make a flip card game thanks to "[Nihongo quest](https://store.steampowered.com/app/1556070/Nihongo_Quest/)".
 
+# **NOTE!**
+## Q&A
+Q: Would I use this if I wasn't the developer?
+A: No, I wouldn't trust a random shell script unless I've inspected it myself.
+
+Q: Should you use this?
+A: Nope, this is pointless and you are risking your safety unless you inspect this line by line. But honestly nobody does that.
+
+Q: Why did you do this then?
+A: Because I wanted?
+## BUG!
+DO NOT PUT COMMAS `,` TO THE QUESTIONS OR ANSWERS, IT WILL BREAK THE SPECIFIC QUESTION/ANSWER PAIR!!!
+
+
 # Installation under the history recap!
 
 ## First there was v.1
@@ -43,8 +57,12 @@ This version is again completely rewritten and the logic is completely different
 
 # Usage
 If you have any issues understanding how to use this application please make an issue.
+THERE ARE VIDEO EXAMPLES OF SOME THINGS. Altough some knowledge is highly recommended.
 ## Installation (Works only for 3.2.1 and later)
+[Video of installation process](https://youtu.be/Na5lgFgHLd0)
 Download the [latest release](https://github.com/LuuppiZ/lfg/releases) and make it an executable and move it to a bin file with the following commands for example.
+
+You can also rename it for easier access. I like to rename it to just `lfg` since then I can just write `lfg` to the terminal. That's the name I'll be referencing to it.
 
 Make it executable (Replace it with a real path to `lfg`)
 ```
@@ -60,6 +78,7 @@ To check that it works open up a new terminal and type `lfg` it should open the 
 
 ## Import queston/answer pairs
 You need to use the example file or make one yourself. To make one yourself you can use LibreOffice Calc for example.
+[Video example of doing that](https://youtu.be/zH3Lg1INpUI)
 ### Some things you need to know before making a file
 - Un-even rows are questions
 - Even rows are answers
@@ -75,6 +94,7 @@ Here the first answer has every sing answer in one string. This is so that when 
 ## Importing
 Please refer to `lfg -help`
 Anyways here are the simple instructions:
+`lfg` This tries to import every single .csv file from the current working directory.
 `lfg -legacy [variable files]` this is completely useless and should never be used. Funniest thing is that it's not even compatible with the legacy variables but uses a bit different way compared to lfg2. (Supports up to 5 files)
 `lfg -i [variable files]` This is the proper import method. Just put the files after -i separated by a space.
 `lfg example` This is a hardcoded example path and it's located alongside the datafile at `~/.cache/luuppiflipcard/example.csv` The file has to be added manually though. Just download the example.csv from release page.
