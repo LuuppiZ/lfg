@@ -75,13 +75,15 @@ chmod a+x /path/to/lfg
 ```
 Move it to a local binary folder. In this example we use ~/.local/bin/ but you can use any other too. 
 (Make sure to put the real path to `lfg`)
-(Make sure that this folder exists and it's set to binary. If you don't know how just Google it. "How to set ~/.local/bin/ as binary path" or something like that)
+(Make sure that this folder is set to binary path. If you don't know how just Google it. "How to set ~/.local/bin/ as binary path" or something like that)
 ```
 mv /path/to/lfg ~/.local/bin/lfg
 ```
 To check that it works open up a new terminal and type `lfg` it should open the application. If not it's likely that the folder you put it is not a binary folder. Do the "Move it to a local binary folder" step again.
 
 ## Import queston/answer pairs
+Nothing is capital sensitive! The answer and user input is converted to lowercase when they are compared.
+
 You need to use the example file or make one yourself. To make one yourself you can use LibreOffice Calc for example.
 [Video example of doing that](https://youtu.be/zH3Lg1INpUI)
 ### Some things you need to know before making a file
