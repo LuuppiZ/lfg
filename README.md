@@ -5,13 +5,17 @@ I was inspired to make a flip card game thanks to "[Nihongo Quest](https://store
 # **NOTE!**
 ## Q&A
 Q: Would I use this if I wasn't the developer?
+
 A: No, I wouldn't trust a random shell script unless I've inspected it myself.
 
 Q: Should you use this?
-A: Nope, this is pointless and you are risking your safety unless you inspect this line by line. But honestly nobody does that.
+
+A: Nope, there are way better programs for the same use case and you are risking your safety unless you inspect this line by line. But honestly nobody does that.
 
 Q: Why did you do this then?
+
 A: Because I wanted?
+
 ## BUG!
 DO NOT PUT COMMAS `,` TO THE QUESTIONS OR ANSWERS, IT WILL BREAK THE SPECIFIC QUESTION/ANSWER PAIR!!!
 
@@ -60,6 +64,7 @@ If you have any issues understanding how to use this application please make an 
 THERE ARE VIDEO EXAMPLES OF SOME THINGS. Altough some knowledge is highly recommended.
 ## Installation (Works only for 3.2.1 and later)
 [Video of installation process](https://youtu.be/Na5lgFgHLd0)
+
 Download the [latest release](https://github.com/LuuppiZ/lfg/releases) and make it an executable and move it to a bin file with the following commands for example.
 
 You can also rename it for easier access. I like to rename it to just `lfg` since then I can just write `lfg` to the terminal. That's the name I'll be referencing to it.
