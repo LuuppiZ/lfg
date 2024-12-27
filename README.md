@@ -1,6 +1,6 @@
 # Luuppi's Flipcard Game
 Simple little flip card game template written in bash.
-I was inspired to make a flip card game thanks to "[Nihongo quest](https://store.steampowered.com/app/1556070/Nihongo_Quest/)".
+I was inspired to make a flip card game thanks to "[Nihongo Quest](https://store.steampowered.com/app/1556070/Nihongo_Quest/)".
 
 # **NOTE!**
 ## Q&A
