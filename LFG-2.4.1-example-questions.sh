@@ -1,4 +1,5 @@
 #! /bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
 
 #This is a simple flip card game
 #By Luuppi

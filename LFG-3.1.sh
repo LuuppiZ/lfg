@@ -1,4 +1,5 @@
 #!/bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
 
 # Gamemode: Survive!
 # In this if you fail n times you lose.

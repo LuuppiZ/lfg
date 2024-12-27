@@ -1,4 +1,6 @@
 #!/bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
+
 # Change the path to your liking (Please use the same format: no slash at the end although it's a folder)
 savefile_location="/home/$USER/.cache/luuppiflipcard"
 
@@ -7,9 +9,9 @@ savefile_location="/home/$USER/.cache/luuppiflipcard"
 
 # Making sure that file exists
 if [[ -s "$savefile_location/data" ]]; then
-  echo "Datafile exists!"
+  datafile_exists=1
 else
-  mkdir -p $savefile_location
+  mkdir -p $savefile_location/
   echo "max_streak_all_time=0" > $savefile_location/data
 fi
 # Gamemode: Survive!
@@ -392,8 +394,6 @@ fi
 done
 }
 
-
-
 sleep_between() {
   if [[ $first_load = 1 ]]; then
     sleep .05
@@ -630,11 +630,17 @@ case "$1" in
     echo "    -i [your variable file]    Import .csv files (Supports up to "
     echo "                               5, just put them after each other)"
     echo "    -h & -help                 Prints this help command"
-    echo "    ward                       Custom hard-coded import path"
+    echo "    example                    Custom hard-coded import path"
     exit 0
   ;;
-  ward)
-    variable_file="/home/luuppi/Documents/coding/practice games/jp/new/items.csv"
+  example)
+    variable_file="$savefile_location/example.csv"
+    if [[ -s "$variable_file" ]]; then
+      echo "It exists!"
+    else
+      echo "Error, example file doesn't exist. Please add it. (Refer to README)"
+      exit
+    fi
     max_variable_in_csv
     import_variables
   ;;
@@ -664,7 +670,14 @@ case "$1" in
   ;;
 esac
 
-max_streak_all_time=$(cat $savefile_location | grep "max_streak_all_time=" | sed "s/max_streak_all_time=//g")
+if [[ $datafile_exists = "1" ]]; then
+  echo "Datafile exists!"
+else
+  echo "Wasn't able to create data file for some reason. All time max streak isn't saved."
+  sleep 5
+fi
+
+max_streak_all_time=$(cat $savefile_location/data | grep "max_streak_all_time=" | sed "s/max_streak_all_time=//g")
 echo "max_streak_all_time: $max_streak_all_time"
 
 clear

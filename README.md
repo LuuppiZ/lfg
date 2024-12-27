@@ -42,7 +42,7 @@ This version is again completely rewritten and the logic is completely different
 - experemental all time max streak
 
 # Usage
-
+If you have any issues understanding how to use this application please make an issue.
 ## Installation (Works only for 3.2.1 and later)
 Download the [latest release](https://github.com/LuuppiZ/lfg/releases) and make it an executable and move it to a bin file with the following commands for example.
 
@@ -64,5 +64,35 @@ You need to use the example file or make one yourself. To make one yourself you 
 - Un-even rows are questions
 - Even rows are answers
 - For example put a question in cell A1 and the answer on A2. If you have multiple options for the answer put them to B2, C2 etc. up to Z2. It's the maximum. Answers beyond that aren't included.
+See the example.csv on every release that supports it.
 
-How I like to do my files:
+How I like to do my files (example):
+```
+How long is the road?,,,
+two hundred meters; 200 meters; 200m,two hundred meters,200 meters,200m
+```
+Here the first answer has every sing answer in one string. This is so that when you want to see the correct answer the application will show the first cell's answer only. This might be changed in a future version but I'll rewrite this if it happens.
+## Importing
+Please refer to `lfg -help`
+Anyways here are the simple instructions:
+`lfg -legacy [variable files]` this is completely useless and should never be used. Funniest thing is that it's not even compatible with the legacy variables but uses a bit different way compared to lfg2. (Supports up to 5 files)
+`lfg -i [variable files]` This is the proper import method. Just put the files after -i separated by a space.
+`lfg example` This is a hardcoded example path and it's located alongside the datafile at `~/.cache/luuppiflipcard/example.csv` The file has to be added manually though. Just download the example.csv from release page.
+
+## "Gameplay" if you can call it such
+- Type the correct answer
+- If an answer is the same as one of these they don't work. For example in multiple choice if the correct answer is `c` it will not say the correct answer, it will say that you chose the correct option.
+- `c` or `correct` for the correct answer.
+- `q` or `quit` for going back to main menu.
+- `seek[sumber]` for seeking to that question. Don't put a space between seek and the number!
+- In multiple choice you can type the answer or the letter.
+
+## Settings
+There are minimal checks for if a setting value is valid!
+Invalid values may break the game!
+
+# Licensing
+
+- Files explicitly marked as being under the GNU General Public License version 2 (GPLv2) are covered by that license. See the `LICENSE` file for details.
+- All other files, including non-code files (e.g., `.csv` and documentation), are released into the public domain and may be freely used, copied, modified, or redistributed without restriction.
+

@@ -1,4 +1,5 @@
 #!/bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
 
 # Todo
 # multiple choice mode (This is in 3.1)
