@@ -2,17 +2,17 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 # Change the path to your liking (Please use the same format: no slash at the end although it's a folder)
-savefile_location="/home/$USER/.cache/luuppiflipcard"
+savefile_path="/home/$USER/.cache/luuppiflipcard"
 
 # This could maybe be changed with zenity but I'm not sure how to save this for next time.
 # Maybe tamper the script? (This feature is experemental and will always be in version 3)
 
 # Making sure that file exists
-if [[ -s "$savefile_location/data" ]]; then
+if [[ -s "$savefile_location" ]]; then
   datafile_exists=1
 else
-  mkdir -p $savefile_location/
-  echo "max_streak_all_time=0" > $savefile_location/data
+  mkdir -p $savefile_path/
+  echo "max_streak_all_time=0" > $savefile_location
 fi
 # Gamemode: Survive!
 # In this if you fail n times you lose.
@@ -33,6 +33,7 @@ variable_file="" #"$(ls *.csv)"
 max_question_to_take_options_from="this is set at import_variables"
 empty_echo="Please type something..."
 game_version="LFG-3.2"
+savefile_location="$savefile_path/data"
 
 # Dynamic variables
 question_number="1"
@@ -45,6 +46,8 @@ current_option_number=0
 max_streak_all_time=0 # It's time to have a save file.
 current_streak=0
 first_load=1
+question_number=1
+answer_number=1
 
 now_playing() {
   echo "Now playing: $mode"
@@ -69,14 +72,27 @@ streak_show() {
   echo "Current streak: $current_streak      All time best streak: $max_streak_all_time"
 }
 
+check_if_mode_is_multiple_choice() {
+  case "$mode" in
+    multiple_choice|random_multiple_choice) break
+    ;;
+  esac
+}
+
 answer_check() {
     case "$input" in
+    "")
+      clear
+      echo "$empty_echo"
+    ;;
     $answer) clear
+      check_if_mode_is_multiple_choice
       echo "Correct"
       streak_add
       next_question
     ;;
     seek*) clear
+      check_if_mode_is_multiple_choice
       seek_function
     ;;
     correct|c)
@@ -124,9 +140,6 @@ answer_comma_parser() {
 # This took hours to make but it's finally done and ready for anything as far as I know
 import_variables() {
   echo "Loading variables to memory..."
-  question_number=1
-  answer_number=1
-
   # Questions
   for ((i=1; i<=$max_question_import; i+=2))
   do
@@ -212,12 +225,9 @@ import_variables() {
   ((max_question_to_take_options_from -= 1))
   max_question=$question_number
   ((max_question -= 1))
-  question_number=1
-  answer_number=1
 }
 
 next_question() {
-
   case "$mode" in
     normal|reverse|multiple_choice)
       ((question_number += 1))
@@ -230,13 +240,11 @@ next_question() {
       sleep 10
     ;;
   esac
-  
 }
 
 seek_function() {
   question_number=$input
   question_number=${question_number#seek} # Should remove the seek word from the variable
-
 }
 
 # Question loop
@@ -390,7 +398,6 @@ else
   done
 fi
   answer_check
-  break
 done
 }
 
@@ -677,8 +684,10 @@ else
   sleep 5
 fi
 
-max_streak_all_time=$(cat $savefile_location/data | grep "max_streak_all_time=" | sed "s/max_streak_all_time=//g")
+max_streak_all_time=$(cat $savefile_location | grep "max_streak_all_time=" | sed "s/max_streak_all_time=//g")
 echo "max_streak_all_time: $max_streak_all_time"
+question_number=1
+answer_number=1
 
 clear
 echo "Loaded \"$max_question\" question/answer pairs."
