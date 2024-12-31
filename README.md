@@ -2,6 +2,9 @@
 Simple little flip card game template written in bash.
 I was inspired to make a flip card game thanks to "[Nihongo Quest](https://store.steampowered.com/app/1556070/Nihongo_Quest/)".
 
+# [New Python version here!](https://github.com/LuuppiZ/luupycards)
+I wanted to make a new repository and start fresh.
+
 # **NOTE!**
 ## Q&A
 Q: Would I use this if I wasn't the developer?
